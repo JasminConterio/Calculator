@@ -1,18 +1,44 @@
 const readline = require('readline-sync');
 
 console.log('Welcome to the calculator!');
+console.log('===========================');
 
-// Get 2 numbers from the user, convert to float, multiply and pring
-console.log('Enter a number to multiply:');
-// const response = readline.prompt(); 
-// Instructions suggest using a const, but this way we don't need separate variables for each user input
-var response = readline.prompt();
-num1 = parseFloat(response);
+console.log('Please enter the operator (+ - * /)');
+const operator = readline.prompt();
 
-console.log('Enter a second number to multiply:');
-response = readline.prompt();
-num2 = parseFloat(response);
+console.log('Enter the first number');
+const response1 = readline.prompt();
+const num1 = parseFloat(response1);
+/* 
+In their example, they would do 
 
-answer = num1*num2;
+num1 = +response
 
-console.log('The product of you numbers is ' + answer)
+The unary plus tries to convert the operand to a number
+*/
+
+console.log('Enter the second number');
+const response2 = readline.prompt();
+const num2 = parseFloat(response2);
+
+var answer;
+
+switch (operator) {
+    case '+':
+        answer = num1 + num2;
+        break;
+    case '-':
+        answer = num1 - num2;
+        break;
+    case '*':
+        answer = num1*num2;
+        break;
+    case '/':
+        answer = num1/num2;
+        break;
+
+}
+
+
+
+console.log('The answer is ' + answer);
