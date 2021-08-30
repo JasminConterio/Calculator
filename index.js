@@ -1,40 +1,54 @@
 const readline = require('readline-sync');
 
+// ===========================================
+// Get instructions from user
+
 console.log('Welcome to the calculator!');
 console.log('===========================');
 
 console.log('Please enter the operator (+ - * /)');
 const operator = readline.prompt();
 
-console.log('Enter the first number');
-const response1 = readline.prompt();
-const num1 = parseFloat(response1);
-/* 
-In their example, they would do 
+console.log('How many numbers to you want to ' + operator + '?');
+const n_numbers = readline.prompt();
 
-num1 = +response
+var numbers = Array(n_numbers);
 
-The unary plus tries to convert the operand to a number
-*/
+for(let i = 0; i<n_numbers; i++){
+    console.log('Please enter number ' + (i+1));
+    let response = readline.prompt();
+    numbers[i] = parseFloat(response);
+}
 
-console.log('Enter the second number');
-const response2 = readline.prompt();
-const num2 = parseFloat(response2);
 
-var answer;
+// ===========================================
+// Run calculator
+
+
+
+
+var answer = numbers[0];
 
 switch (operator) {
     case '+':
-        answer = num1 + num2;
+        for(i = 1; i<n_numbers; i++){
+            answer = answer + numbers[i];
+        }           
         break;
     case '-':
-        answer = num1 - num2;
+        for(i = 1; i<n_numbers; i++){
+            answer = answer - numbers[i];
+        }  
         break;
     case '*':
-        answer = num1*num2;
+        for(i = 1; i<n_numbers; i++){
+            answer = answer * numbers[i];
+        }  
         break;
     case '/':
-        answer = num1/num2;
+        for(i = 1; i<n_numbers; i++){
+            answer = answer / numbers[i];
+        }  
         break;
 
 }
