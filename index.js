@@ -6,6 +6,13 @@ function printWelcomeMessage(){
     console.log('===========================');
 }
 
+function getCalculationMode(){
+    mode = getNumberInputWithPrompt(`Which calculator mode do you want?
+    1) Arithmetic
+    2) Vowel counting
+    0) Quit`);
+    return mode;
+}
 
 function getStringInputWithPrompt(prompt){
     console.log(prompt);
@@ -65,13 +72,13 @@ function runCalculation(){
     return ans;
 }
 
-function performOneCalculation(){
+function performOneArithmeticCalculation(){
     // get operator, check it is valid  
     do 
         operator = getOperator();
     while(!(operator))
     // get arguments, check they are valid, run calculation, print answer
-    n_args = getNumberInputWithPrompt(`How many arguments to you want to ${operator}? (0 to quit)`);
+    n_args = getNumberInputWithPrompt(`How many arguments to you want to ${operator}?`);
     if (n_args){
         args = inputArgs();
         var answer = runCalculation();
@@ -81,12 +88,66 @@ function performOneCalculation(){
 }
 
 
+function countLetter(inputString, LetterToCount){
+    let count = 0;
+    let position = inputString.indexOf(LetterToCount);
+    while (position !== -1){
+        count++;
+        position = inputString.indexOf(LetterToCount, position + 1)
+    }
+    return count;
+}
+
+function countVowels(inputString){
+    var VowelCount = {A: 0, E: 0, I: 0, O: 0, U: 0};
+    let countUpper = 0;
+    let countLower = 0;
+    VowelKeys = Object.keys(VowelCount);
+    for(i=0; i<VowelKeys.length; i++){
+        countUpper = countLetter(inputString,VowelKeys[i]);
+        countLower = countLetter(inputString,VowelKeys[i].toLowerCase());
+        VowelCount[VowelKeys[i]] = countUpper + countLower;
+    }
+    return VowelCount;
+}
+
+function printVowelCount(VowelCount){
+    VowelKeys = Object.keys(VowelCount);
+    console.log('');
+    console.log('The vowel counts are:');
+    for(i=0; i<VowelKeys.length; i++){
+        console.log(`${VowelKeys[i]}: ${VowelCount[VowelKeys[i]]}`);
+    }
+    console.log('');
+}
+
+function performOneVowelCountingCalculation(){
+    //console.log('Vowel counting mode under development')
+    
+
+    inputString = getStringInputWithPrompt('Please enter a string')
+    VowelCount = countVowels(inputString);
+    printVowelCount(VowelCount);
+
+    return 0;
+}
+
 // =====================================================================
 // Main code
 // =====================================================================
+const ARITHMETIC_MODE = 1;
+const VOWEL_COUNTING_MODE = 2;
+var calculationMode;
 
 printWelcomeMessage();
 // continue calculations until the using wants to calculate 0 arguments
-do
-    performOneCalculation();
-while(n_args) 
+do{
+    calculationMode = getCalculationMode();
+    if (calculationMode === ARITHMETIC_MODE) {
+        performOneArithmeticCalculation();
+    }
+    else if (calculationMode === VOWEL_COUNTING_MODE) {
+        performOneVowelCountingCalculation();
+    }
+    
+} while(calculationMode) 
