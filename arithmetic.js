@@ -17,30 +17,32 @@ function getOperator(){
     operator = userInput.getStringInputWithPrompt('Please enter the operator (+ - * /)');
     const validOperators = ['+','-','*','/'];
     if (!(validOperators.includes(operator))){
-        console.log('Invalid operator! Please try again.')
+        console.log('Invalid operator! Please try again.');
         return 0;
     }
     return operator;
 }
 
+
 function runCalculation(){
-    var ans = args[0];
-    for(i=1; i<n_args; i++){
-        switch (operator) {
-            case '+':
-                ans = ans + args[i];
-                break;
-            case '-':
-                ans = ans - args[i];
-                break;
-            case '*':
-                ans = ans*args[i];
-                break;
-            case '/':
-                ans = ans/args[i];
-        }
+    switch (operator){
+        case '+':
+            var ans = args.reduce(function(accumulator, currentValue) {return accumulator + currentValue} );
+            break;
+        case '-':
+            var ans = args.reduce(function(accumulator, currentValue) {return accumulator - currentValue} );
+            break;    
+        case '*':
+            var ans = args.reduce(function(accumulator, currentValue) {return accumulator * currentValue} );
+            break;
+        case '/':
+            var ans = args.filter(function(item) {return item != 0;}).reduce(function(accumulator, currentValue) {return accumulator / currentValue} );
+            break;  
+
     }
-    return ans;
+
+    return ans
+    
 }
 
 exports.performOneArithmeticCalculation = function(){
