@@ -11,10 +11,15 @@ function printWelcomeMessage(){
 }
 
 function getCalculationMode(){
+    do {
     mode = userInput.getNumberInputWithPrompt(`Which calculator mode do you want?
     1) Arithmetic
     2) Vowel counting
     0) Quit`);
+    if (![0,1,2].includes(mode)){
+        console.log(`Mode ${mode} is invalid!`)
+    }
+    } while(![0,1,2].includes(mode))
     return mode;
 }
 
@@ -28,6 +33,7 @@ function getCalculationMode(){
 const ARITHMETIC_MODE = 1;
 const VOWEL_COUNTING_MODE = 2;
 var calculationMode;
+
 
 printWelcomeMessage();
 // continue calculations until the using wants to calculate 0 arguments
