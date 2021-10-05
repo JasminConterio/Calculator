@@ -13,7 +13,7 @@ function inputArgs(){
     return numbers;
 }
 
-/*
+
 function getOperator(){
     operator = userInput.getStringInputWithPrompt('Please enter the operator (+ - * /)');
     const validOperators = ['+','-','*','/'];
@@ -25,13 +25,13 @@ function getOperator(){
 }
 
 
-*/
 
+/*
 // getOperator version without validity check
 function getOperator(){
     return userInput.getStringInputWithPrompt('Please enter the operator (+ - * /)');
 }
-
+*/
 
 function runCalculation(){
     switch (operator){
@@ -61,7 +61,7 @@ function runCalculation(){
 
 
 
-
+/*
 // performOneArithmeticCalculation with throw try...catch for invalid operators
 exports.performOneArithmeticCalculation = function(){
      
@@ -84,10 +84,10 @@ exports.performOneArithmeticCalculation = function(){
     return n_args;
 }
 
+*/
 
-/*
 
-// performOneArithmeticCalculation where inputs are checked for validity
+
 exports.performOneArithmeticCalculation = function(){
     // get operator, check it is valid  
     do 
@@ -103,4 +103,3 @@ exports.performOneArithmeticCalculation = function(){
     return n_args;
 }
 
-*/
